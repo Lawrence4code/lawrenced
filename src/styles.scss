@@ -1,0 +1,1655 @@
+@import './base';
+
+// Hero Animation // credits: @screenshake // linkedin.com/in/saranshsinha
+
+@function random-color() {
+  $value: 'black';
+  @if random(5) == 1 {
+    $value: '#316fbb';
+  } @else if random(5) == 2 {
+    $value: '#d9015b';
+  } @else if random(5) == 3 {
+    $value: '#1d1d1d';
+  } @else {
+    $value: '#85C1E9';
+  }
+  @return unquote($value);
+}
+
+// dot is number of dots
+@function multiple-box-shadow($dot) {
+  $value: '#{random(2000)}px #{random(2000)}px #{random-color()}';
+
+  @for $i from 2 through $dot {
+    $value: '#{$value} , #{random(2000)}px #{random(2000)}px #{random-color()}';
+  }
+
+  @return unquote($value);
+}
+
+$shadows-small: multiple-box-shadow(700);
+$shadows-medium: multiple-box-shadow(200);
+$shadows-big: multiple-box-shadow(100);
+
+#hero__section {
+  position: relative;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.87), rgba(0, 0, 0, 0.87)),
+    url(./images/bg.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+// test
+
+.hero__section--animation {
+  height: 100vh;
+  position: absolute;
+
+  & div {
+    opacity: 0.8;
+    border-radius: 50%;
+    background: transparent;
+
+    &:after {
+      content: ' ';
+      position: absolute;
+      top: 2000px;
+      border-radius: 50%;
+      background: transparent;
+    }
+  }
+
+  #dot1 {
+    width: 1px;
+    height: 1px;
+    box-shadow: $shadows-small;
+    animation: dotAni 150s linear infinite;
+
+    &:after {
+      box-shadow: $shadows-small;
+      width: 1px;
+      height: 1px;
+    }
+  }
+
+  #dot2 {
+    width: 2px;
+    height: 2px;
+    box-shadow: $shadows-medium;
+    animation: dotAni 100s linear infinite;
+
+    &:after {
+      width: 2px;
+      height: 2px;
+      box-shadow: $shadows-medium;
+    }
+  }
+
+  #dot3 {
+    width: 3px;
+    height: 3px;
+    box-shadow: $shadows-big;
+    animation: dotAni 50s linear infinite;
+
+    &:after {
+      width: 3px;
+      height: 3px;
+      box-shadow: $shadows-big;
+    }
+  }
+
+  @keyframes dotAni {
+    from {
+      transform: translateY(-120rem);
+    }
+
+    to {
+      transform: translateY(0px);
+    }
+  }
+}
+
+.navbar {
+  align-items: center;
+  color: white;
+  display: flex;
+  height: 4rem;
+  justify-content: space-between;
+  position: absolute;
+  width: 100%;
+
+  & a {
+    display: block;
+    text-decoration: none;
+
+    &:first-child {
+      margin-left: 2rem;
+      color: $grey-light;
+    }
+
+    &:last-child {
+      margin-right: 2rem;
+    }
+  }
+
+  &__logo {
+    display: inline-block;
+    fill: white;
+    stroke-width: 0;
+    stroke: white;
+    cursor: pointer;
+
+    & h2 {
+      font-weight: 400;
+      &:hover {
+        color: $pink;
+        transition: all 0.3s ease-in;
+      }
+    }
+  }
+}
+
+// Menu Icon
+.wrapper-menu {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 1.2rem;
+  justify-content: space-between;
+  transition: transform 330ms ease-out;
+  width: 1.2rem;
+
+  @include respond(phone) {
+    height: 1.8rem;
+    width: 1.8rem;
+  }
+
+  @include respond(tab-port) {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  @include respond(tab-land) {
+    height: 1.75rem;
+    width: 1.75rem;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+
+    .line-menu {
+      background-color: $pink;
+    }
+  }
+}
+
+.wrapper-menu.open {
+  transform: rotate(-45deg);
+}
+
+.wrapper-menu.open .line-menu__middle {
+  width: 1.25rem;
+
+  @include respond(phone) {
+    width: 1.8rem;
+  }
+
+  @include respond(tab-port) {
+    width: 2rem;
+  }
+
+  @include respond(tab-land) {
+    width: 1.7rem;
+  }
+
+  @include respond(netbook) {
+    width: 1.73rem;
+  }
+
+  @include respond(desktop) {
+    width: 1.75rem;
+  }
+
+  @include respond(wide-screen) {
+    width: 1.73rem;
+  }
+}
+
+.line-menu {
+  background-color: $grey-light;
+  border-radius: 5px;
+  height: 2px;
+  width: 100%;
+}
+
+.line-menu.half {
+  width: 50%;
+}
+
+.line-menu.start {
+  transition: transform 330ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+  transform-origin: right;
+}
+
+.open .line-menu.start {
+  transform: rotate(-90deg) translateX(1px);
+}
+
+.line-menu.end {
+  align-self: flex-end;
+  transition: transform 330ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+  transform-origin: left;
+}
+
+.open .line-menu.end {
+  transform: rotate(-90deg) translateX(-1px);
+}
+
+.hero {
+  color: $off-white;
+  border: 2px;
+  left: 50%;
+  padding-bottom: 0.5rem;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  & h1 {
+    backface-visibility: hidden;
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 2.5rem;
+    margin: 0 auto;
+    width: 10rem;
+
+    @include respond(phone) {
+      font-size: 1.75rem;
+      line-height: 2rem;
+      width: 17.5rem;
+    }
+
+    @include respond(phone-big) {
+      font-size: 2.5rem;
+      line-height: 2.75rem;
+      width: 22.5rem;
+    }
+
+    @include respond(tab-port) {
+      font-size: 2.75rem;
+      line-height: 3rem;
+      width: 25rem;
+    }
+
+    @include respond(tab-land) {
+      font-size: 3.1rem;
+      line-height: 3.5rem;
+      width: 40rem;
+    }
+
+    @include respond(desktop) {
+      font-size: 3.25rem;
+      width: 42.5rem;
+      line-height: 3.6rem;
+    }
+
+    @include respond(wide-screen) {
+      font-size: 3.5rem;
+      width: 45rem;
+      line-height: 3.7rem;
+    }
+
+    & span {
+      color: $pink;
+    }
+  }
+
+  &__title--lineOne {
+    animation: moveInLeftShake 1s ease-in;
+  }
+
+  &__title--lineTwo {
+    animation: moveInRightShake 1s ease-in;
+  }
+
+  &__button {
+    animation: slideInUp 0.7s ease-in;
+    border-radius: 2px;
+    border: 1px solid white;
+    color: white;
+    display: block;
+    font-size: 1rem;
+    padding: 0.2rem;
+    margin: 1.5rem auto 0 auto;
+    text-decoration: none;
+    width: 7.5rem;
+
+    @include respond(phone-big) {
+      padding: 0.4rem 0.5rem;
+      font-size: 1.2rem;
+      width: 9rem;
+    }
+
+    @include respond(desktop) {
+      padding: 0.5rem 0.7rem 0.6rem 0.7rem;
+      font-size: 1.3rem;
+      width: 11rem;
+    }
+
+    &:hover {
+      background: $pink;
+      border: 1px solid $pink;
+      color: white;
+      transition: all 0.3s linear;
+    }
+  }
+}
+
+.hero__scrollIndicator {
+  border: 2px solid rgba($grey-light, 0.15);
+  border-radius: 50px;
+  bottom: 0;
+  height: 35px;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 20px;
+}
+
+.hero__scrollIndicator:before {
+  animation: scrollDown 1.75s infinite;
+  background-color: rgba($grey-light, 0.7);
+  content: '';
+  height: 4px;
+  left: 50%;
+  position: absolute;
+  top: 5px;
+  transform: translate(-50%, 0);
+  width: 2px;
+}
+
+.menu {
+  &__background {
+    position: fixed;
+    background-color: #20305a;
+    top: 3rem;
+    right: 3rem;
+    border-radius: 50%;
+    opacity: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    z-index: 700;
+  }
+
+  &__button {
+    position: fixed;
+    top: 1.5rem;
+    right: 2rem;
+    z-index: 900;
+  }
+
+  &__content {
+    width: 0%;
+    opacity: 0;
+    height: 100vh;
+    position: fixed;
+    z-index: 800;
+  }
+
+  &__list {
+    list-style-type: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__item {
+    padding: 0.5rem;
+    text-transform: uppercase;
+    color: white;
+    font-size: 1rem;
+
+    @include respond(tab-land) {
+      padding: 0.6rem;
+      font-size: 1.2rem;
+    }
+
+    &:hover {
+      background: darken(#20305a, 2%);
+      transform: scale(1.1);
+      transition: all 0.3s ease-in-out;
+      font-size: 1.1rem;
+      color: $pink;
+      letter-spacing: 1px;
+    }
+
+    & a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}
+
+/* ------------------------------------ Foundation Section ------------------------------------*/
+.foundation {
+  &__section {
+    position: relative;
+    width: 100%;
+  }
+
+  &__title {
+    color: $grey;
+    font-size: 1rem;
+    font-weight: 400;
+    height: 6rem;
+    margin: 0 3rem 8rem 3rem;
+    padding-top: 5rem;
+    word-spacing: 1px;
+    line-height: 3rem;
+
+    @include respond(phone) {
+      font-size: 1.5rem;
+    }
+
+    @include respond(phone-big) {
+      font-size: 1.75rem;
+    }
+
+    @include respond(tab-port) {
+      font-size: 2rem;
+      line-height: 3.2rem;
+    }
+
+    @include respond(tab-land) {
+      font-size: 2.8rem;
+    }
+
+    @include respond(desktop) {
+      margin: 0 3rem 6rem 3rem;
+      padding-top: 4rem;
+      font-size: 3rem;
+    }
+
+    &:after {
+      border-bottom: 1px solid $pink;
+      content: '';
+      display: block;
+      margin: 1.1rem auto 0 auto;
+      width: 40%;
+
+      @include respond(tab-land) {
+        margin: 2rem auto 0 auto;
+        width: 40%;
+      }
+
+      @include respond(desktop) {
+        width: 25%;
+      }
+    }
+  }
+
+  &__block {
+    display: grid;
+    margin: 0 auto 2rem auto;
+    width: 80%;
+
+    @include respond(netbook) {
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 1em;
+    }
+
+    &--iconAndTitle {
+      @include respond(tab-land) {
+        opacity: 0;
+      }
+    }
+
+    &--title {
+      color: $grey;
+      font-size: 1.65rem;
+      margin-bottom: 1.5rem;
+
+      @include respond(desktop) {
+        margin-bottom: 1rem;
+      }
+    }
+
+    &--textAndButton {
+      margin-bottom: 1rem;
+      @include respond(tab-land) {
+        opacity: 0;
+      }
+
+      & span {
+        border-bottom: 1px dotted $blue;
+        color: $blue;
+        cursor: pointer;
+        font-size: 1rem;
+        margin: 0 auto;
+        padding: 0.3rem 0.2rem 0.1rem 0.2rem;
+        text-decoration: none;
+        // width: 40%;
+        font-size: 0.8rem;
+      }
+    }
+
+    &--text {
+      color: $grey;
+      font-size: 0.9rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+      line-height: 145%;
+      width: 100%;
+    }
+  }
+
+  &__icon--code {
+    height: 7.5rem;
+    padding-bottom: 1rem;
+    width: 7.5rem;
+  }
+
+  &__icon--optimization {
+    height: 5.5rem;
+    margin-bottom: 2rem;
+    padding-top: 1.5rem;
+    width: 5.5rem;
+  }
+
+  &__icon--design {
+    height: 5.5rem;
+    margin-bottom: 2rem;
+    padding-top: 1.5rem;
+    width: 5.5rem;
+  }
+
+  &__icon--experience {
+    height: 7.3rem;
+    margin-bottom: 0.2rem;
+    padding: 1.25rem 0 1.5rem 0;
+    width: 7.3rem;
+  }
+}
+
+/* ---------------- MODAL ---------------*/
+
+.foundation__codeModal,
+.foundation__optimizationModal,
+.foundation__designModal,
+.foundation__experienceModal {
+  &--container {
+    animation: modalContainerAni 0.5s ease-in-out forwards;
+    display: none;
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 950;
+  }
+
+  &--content {
+    animation: slideInUpSimple 0.5s ease-in-out forwards;
+    background-color: white;
+    border-radius: 2px;
+    height: 80%;
+    left: 50%;
+    margin-top: 10%;
+    overflow: scroll;
+    padding: 2rem 2rem 0.5rem 2rem;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+
+    @include respond(tab-port) {
+      margin-top: 5%;
+      width: 80%;
+    }
+
+    @include respond(netbook) {
+      margin-top: 5%;
+      width: 65%;
+    }
+
+    @include respond(desktop) {
+      margin-top: 5%;
+      width: 50%;
+    }
+
+    @media (min-height: 22.5rem) {
+      height: auto;
+      padding: 2rem;
+    }
+
+    & h2 {
+      color: $grey;
+      font-size: 1.5rem;
+      padding: 1rem 0;
+      text-transform: uppercase;
+
+      @include respond(tab-port) {
+        font-size: 1.75rem;
+      }
+
+      &:after {
+        content: ' ';
+        border-bottom: 1px dashed $grey;
+        display: block;
+        margin: 1.5rem auto 0 auto;
+        width: 50%;
+      }
+    }
+
+    & p {
+      color: $grey;
+      font-size: 0.7rem;
+      font-weight: 400;
+      line-height: 145%;
+      padding: 1rem 0;
+
+      @include respond(phone) {
+        font-size: 0.85rem;
+      }
+
+      @include respond(tab-land) {
+        font-size: 1rem;
+      }
+    }
+
+    & span {
+      fill: $grey;
+      stroke: $grey;
+      position: absolute;
+      right: 0.75rem;
+      top: 1.5rem;
+      transform: translate(0%, -0.8rem);
+
+      & svg {
+        cursor: pointer;
+        height: 25px;
+        width: 25px;
+      }
+    }
+  }
+}
+
+/* ---------------- PROCESSBAR ---------------*/
+.process {
+  background: white;
+  display: none;
+  height: 15rem;
+  margin: 5rem auto 0 auto;
+  width: 80%;
+
+  @include respond(tab-land) {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+}
+
+.process__title {
+  color: $grey;
+  font-size: 2.6rem;
+  font-weight: 400;
+  margin-bottom: 5rem;
+  word-spacing: 5px;
+}
+
+.process__bar {
+  counter-reset: step;
+  display: flex;
+  margin-top: 10rem;
+  opacity: 0;
+  width: 100%;
+
+  @include respond(tab-land) {
+    margin-top: 6rem;
+  }
+}
+
+.process__bar li {
+  color: $grey;
+  font-size: 0.9rem;
+  line-height: 145%;
+  list-style-type: none;
+  position: relative;
+  text-decoration: none;
+  width: 16.66%;
+
+  @include respond(netbook) {
+    font-size: 1.1rem;
+  }
+}
+
+.process__bar li:before {
+  background-color: white;
+  border: 3px solid $blue;
+  border-radius: 50%;
+  color: $grey;
+  content: counter(step);
+  counter-increment: step;
+  display: block;
+  height: 40px;
+  left: 40%;
+  line-height: 35px;
+  margin: 0 auto 10px auto;
+  position: absolute;
+  top: -50px;
+  width: 40px;
+  z-index: 200;
+}
+
+.process__bar li:after {
+  background-color: $blue;
+  content: '';
+  height: 2px;
+  left: -60%;
+  position: absolute;
+  top: -30px;
+  width: 100%;
+  z-index: 100;
+}
+
+.process__bar li:first-child:after {
+  content: none;
+}
+
+.icon-forward {
+  fill: $grey-dark;
+  height: 1rem;
+  padding-top: 0.4rem;
+  width: 1rem;
+}
+
+.icon-tick {
+  fill: $grey-dark;
+  height: 1rem;
+  width: 1rem;
+}
+
+/* ------------------------------------ Projects Section ------------------------------------*/
+
+/*
+
+.projects {
+  background-color: $off-white;
+  position: relative;
+  width: 100%;
+}
+
+.projects__title {
+  color: $grey;
+  font-size: 2.25rem;
+  font-weight: 400;
+  padding: 5rem 0 1rem 0;
+  text-transform: uppercase;
+  width: auto;
+
+  @include respond(tab-land) {
+    font-size: 2rem;
+    padding: 4rem 0 1rem 0;
+  }
+
+  &:after {
+    border-bottom: 0.1rem solid $pink;
+    content: '';
+    display: block;
+    margin: 2rem auto 0 auto;
+    width: 10%;
+
+    @include respond(tab-land) {
+      margin: 1rem auto 0 auto;
+    }
+  }
+}
+
+.projects__button {
+  color: $grey;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  width: 85%;
+
+  @include respond(tab-land) {
+    width: 60%;
+    padding: 1rem 1rem 2rem 1rem;
+  }
+}
+
+.projects__button a {
+  border-radius: 1px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.35rem;
+  margin: 1rem 0.2rem;
+  padding: 0.5rem;
+  text-transform: uppercase;
+  transition: back 0.3s ease-in-out;
+  width: 100%;
+
+  @include respond(tab-land) {
+    margin: 1rem 2rem;
+  }
+
+  &:hover {
+    background-color: $grey-light;
+  }
+}
+
+.projects__block {
+  height: auto;
+  margin: 0 auto;
+  padding-bottom: 3.5rem;
+  position: relative;
+  width: 100%;
+
+
+  @include respond(tab-land) {
+    padding-bottom: 3.5rem;
+  }
+}
+
+.projects__block--inner {
+  display: grid;
+  column-gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
+  margin: 0 auto;
+  opacity: 0;
+  row-gap: 1rem;
+  width: 80%;
+
+  @include respond(tab-land) {
+    column-gap: 1rem;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    row-gap: 1rem;
+  }
+}
+
+.project__content {
+  border-radius: 1px;
+  cursor: pointer;
+  position: relative;
+
+  @include respond(tab-land) {
+    margin-bottom: 0;
+  }
+}
+
+.project__content {
+  height: 20rem;
+  width: 100%;
+}
+
+.project__content--extra {
+  background: $grey-light;
+  display: none;
+  height: 100%;
+  left: 50%;
+  margin: 0 auto;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+.react-project-one .project__content {
+  background-image: url('../images/webapp1.png');
+}
+
+.react-project-two .project__content {
+  background-image: url('../images/webapp2.png');
+}
+
+.node-project-one .project__content {
+  background-image: url('../images/webapp3.png');
+}
+
+.node-project-two .project__content {
+  background-image: url('../images/webapp4.png');
+}
+
+.redux-project-one .project__content {
+  background-image: url('../images/webapp5.png');
+}
+
+.redux-project-two .project__content {
+  background-image: url('../images/webapp6.png');
+}
+
+.project__content {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.project__content--extra a {
+  display: block;
+}
+
+.projects__items {
+  position: relative;
+}
+
+.projects__items:hover .project__content--extra {
+  animation: fadeIn 0.2s ease-in forwards;
+  color: white;
+  display: block;
+  opacity: 1;
+  width: 100%;
+}
+
+.project__content--extraInfo {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.project__content--extraInfo h2 {
+  color: $grey;
+  font-size: 1.75rem;
+  margin: 5%;
+  text-transform: uppercase;
+}
+
+.project__content--extraInfo p {
+  color: $pink;
+  font-weight: 300;
+  font-size: 1.25rem;
+  margin-bottom: 30%;
+}
+
+.project__content--extraInfo span {
+  border: 1px solid $pink;
+  border-radius: 1px;
+  color: $pink;
+  cursor: pointer;
+  padding: 1rem 3rem;
+  text-transform: uppercase;
+}
+
+.project__content--extraInfo span:hover {
+  color: white;
+  background-color: $pink;
+  transition: all 0.4s ease-in-out;
+}
+
+/* ------------------------- Modal Style ------------------------- */
+
+/*
+.projectOne__modal--container,
+.projectTwo__modal--container,
+.projectThree__modal--container,
+.projectFour__modal--container,
+.projectFive__modal--container,
+.projectSix__modal--container {
+
+  display: none;
+  height: 100vh;
+  left: 50%;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  z-index: 950;
+  animation: modalContainerAni 0.4s ease-in-out forwards;
+}
+
+.projectOne__modal--content,
+.projectTwo__modal--content,
+.projectThree__modal--content,
+.projectFour__modal--content,
+.projectFive__modal--content,
+.projectSix__modal--content {
+  background: white;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  z-index: 1000;
+
+
+  @media (min-height: 30rem) {
+    width: 90%;
+  }
+
+  @include respond(tab-land) {
+    width: 60%;
+  }
+}
+
+.projectOne__modal--image,
+.projectTwo__modal--image,
+.projectThree__modal--image,
+.projectFour__modal--image,
+.projectFive__modal--image,
+.projectSix__modal--image {
+  display: none;
+
+  @media (min-height: 35rem) {
+    display: inline-block;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 20rem;
+    width: 100%;
+  }
+}
+
+.projectOne__modal--closeBtn,
+.projectTwo__modal--closeBtn,
+.projectThree__modal--closeBtn,
+.projectFour__modal--closeBtn,
+.projectFive__modal--closeBtn,
+.projectSix__modal--closeBtn {
+  fill: $grey-dark;
+  stroke: $grey-dark;
+  position: absolute;
+  right: 0.8rem;
+  top: 1.5rem;
+  transform: translate(0%, -0.8rem);
+
+  & svg {
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+  }
+}
+
+// project modal one 
+.projectOne__modal--image {
+  background-image: url('../images/webappport1.jpg');
+}
+
+// project modal two
+.projectTwo__modal--image {
+  background-image: url('../images/webappport2.jpg');
+}
+
+// project modal Three
+.projectThree__modal--image {
+  background-image: url('../images/webappport3.jpg');
+}
+
+// project modal four
+.projectFour__modal--image {
+  background-image: url('../images/webappport4.jpg');
+}
+
+// project modal five
+.projectFive__modal--image {
+  background-image: url('../images/webappport5.jpg');
+}
+
+// project modal six
+.projectSix__modal--image {
+  background-image: url('../images/webappport6.jpg');
+}
+
+// ------------------
+
+.modal__details {
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+}
+
+.modal__title {
+  color: $grey;
+  padding: 1rem 0;
+  text-transform: uppercase;
+}
+
+.modal__description {
+  padding: 1rem 0;
+  color: $grey;
+  border-top: 1px solid $grey-light;
+}
+
+.modal__extraInfo {
+  display: none;
+
+  @include respond(tab-land) {
+    color: $grey;
+    padding: 2rem 0;
+    font-size: 1.15rem;
+    display: grid;
+    row-gap: 0.5rem;
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+.modal__extraInfo--tech {
+  & span {
+    background: $pink;
+    border-radius: 2px;
+    color: $grey-dark;
+    margin: 0 0.5rem;
+    padding: 0.2rem 0.5rem 0.5rem 0.5rem;
+  }
+}
+
+.modal__links {
+  display: flex;
+  margin: 0 auto;
+}
+
+.liveSite_link,
+.github_link {
+  align-items: center;
+  border-bottom: 1px dotted $grey;
+  color: $grey;
+  display: flex;
+  margin: 0 1rem;
+  text-decoration: none;
+}
+
+.liveSite_link span,
+.github_link span {
+  margin-left: 0.5rem;
+}
+
+.liveSite_link svg {
+  fill: royalblue;
+  height: 1.35rem;
+  width: 1.35rem;
+}
+
+.github_link svg {
+  height: 1.6rem;
+  padding-bottom: 0.2rem;
+  width: 1.6rem;
+}
+
+*/
+
+.footer {
+  align-items: center;
+  background: $grey-dark2;
+  color: $off-white;
+  display: flex;
+  flex-direction: column;
+
+  & img {
+    border-radius: 50%;
+    height: 5rem;
+    margin: 2rem 1rem 0.5rem 1rem;
+    width: 5rem;
+  }
+
+  &__name {
+    font-size: 1.25rem;
+  }
+
+  &__paragraph {
+    font-size: 0.8rem;
+    margin: 0.5rem;
+    width: 80%;
+
+    & a {
+      border-bottom: 1px dotted #6889ee;
+      color: #6889ee;
+      text-decoration: none;
+
+      &:active,
+      &:visited {
+        color: #6889ee;
+      }
+    }
+
+    @include respond(tab-land) {
+      font-size: 0.9em;
+    }
+  }
+
+  & p:nth-child(2) {
+    color: darken($grey-light, 5%);
+  }
+
+  &__link {
+    color: darken($grey-light, 20%);
+    display: grid;
+    font-size: 0.9rem;
+    padding: 1rem 0;
+    row-gap: 0.2rem;
+    width: 80%;
+
+    @include respond(tab-land) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    & p {
+      font-size: 0.8rem;
+    }
+  }
+
+  &__icons {
+    column-gap: 0.2rem; // this was creating the problem with the width!!!
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: space-around;
+    margin: 1rem auto 2rem auto;
+    width: 40%;
+
+    @include respond(tab-land) {
+      width: 20%;
+    }
+
+    & a {
+      fill: grey;
+      height: 1.25rem;
+      justify-self: center;
+      width: 1.25rem;
+    }
+
+    &--mail {
+      &:hover {
+        fill: #c71610;
+        transition: all 0.2s ease-in;
+      }
+
+      & svg {
+        height: 1.5rem;
+        width: 1.25rem;
+      }
+    }
+
+    &--github {
+      &:hover {
+        fill: $off-white;
+        transition: all 0.2s ease-in;
+      }
+
+      padding-top: 0.1rem;
+
+      & svg {
+        height: 1rem;
+        width: 1rem;
+      }
+    }
+
+    &--twitter {
+      &:hover {
+        fill: #1da1f2;
+        transition: all 0.2s ease-in;
+      }
+
+      & svg {
+        padding-top: 3px;
+        height: 1.4rem;
+        width: 1.3rem;
+      }
+    }
+
+    &--linkedin {
+      &:hover {
+        fill: #0077b5;
+      }
+
+      & svg {
+        padding-top: 4px;
+        height: 1.3rem;
+        width: 1.3rem;
+      }
+    }
+  }
+}
+
+.heart {
+  fill: #e31b23;
+  width: 100px;
+
+  & svg {
+    height: 1.15rem;
+    padding-top: 0.1rem;
+    width: 1.15rem;
+  }
+}
+
+/*
+.threeColumns {
+  column-gap: 1rem;
+  display: grid;
+  grid-template-rows: repeat(1, 1fr);
+  margin: 0 auto;
+  opacity: 0;
+  row-gap: 1rem;
+  width: 80%;
+
+  @include respond(tab-land) {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+  }
+}
+
+.twoColumns {
+  column-gap: 1rem;
+  display: grid;
+  grid-template-rows: repeat(1, 1fr);
+  margin: 0 auto;
+  opacity: 0;
+  row-gap: 1rem;
+
+  @include respond(tab-land) {
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    width: 60%;
+  }
+}
+
+*/
+
+// pushed classes element animation/visibility
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: inline-block;
+}
+
+.active {
+  animation: heroButtonAni 0.5s ease-in-out forwards;
+}
+
+.selected {
+  animation: selectedProjectContentAni 1s ease-in-out forwards;
+}
+
+.selectedAll {
+  animation: selectedAllProjectContentAni 1s ease-in-out forwards;
+}
+
+.moveInFromLeftAni {
+  animation: moveInLeft 1s ease-in forwards;
+}
+
+.slideInUp {
+  @include respond(tab-port) {
+    animation: slideInUp 1s ease 0.5s forwards;
+  }
+}
+
+.fadeAndPopIn {
+  @include respond(tab-land) {
+    animation: fadeAndPopIn 1s ease 0.5s forwards;
+  }
+}
+
+.beat {
+  animation: beat 1.25s ease-in-out 0.5s forwards infinite;
+}
+
+.menuFadeIn {
+  animation: menuFadeIn 0.5s ease-in-out forwards;
+}
+
+.menuFadeOut {
+  animation: menuFadeOut 0.5s ease-in-out forwards;
+}
+
+.menuBgEaseIn {
+  animation: menuBgEaseIn 0.5s ease-in-out forwards;
+}
+
+.menuBgEaseOut {
+  animation: menuBgEaseOut 0.4s ease-in-out forwards;
+}
+
+// Animations
+
+@keyframes moveInLeftShake {
+  0% {
+    opacity: 0;
+    transform: translateX(-12rem);
+  }
+
+  80% {
+    transform: translateX(1.5rem);
+  }
+
+  100% {
+    opacity: 1;
+    left: 50;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scrollDown {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+}
+
+@keyframes moveInRightShake {
+  0% {
+    opacity: 0;
+    transform: translateX(12rem);
+  }
+
+  80% {
+    transform: translateX(-1.5rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10rem);
+    display: inline-block;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeAndPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-12rem);
+  }
+
+  100% {
+    opacity: 1;
+    left: 50;
+    transform: translateX(0);
+  }
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1);
+  }
+
+  90% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInUpSimple {
+  from {
+    opacity: 0.1;
+    top: 100%;
+  }
+
+  to {
+    opacity: 1;
+    top: 40%;
+  }
+}
+
+@keyframes heroButtonAni {
+  from {
+    background-color: $grey-light;
+    color: $grey;
+  }
+
+  to {
+    background-color: $pink;
+    color: white;
+  }
+}
+
+@keyframes regularProjectContentAni {
+  from {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes selectedProjectContentAni {
+  from {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes selectedAllProjectContentAni {
+  from {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes modalContainerAni {
+  from {
+    background: rgba(0, 0, 0, 0.1);
+    opacity: 0;
+  }
+
+  to {
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 1;
+  }
+}
+
+@keyframes menuFadeIn {
+  0% {
+    opacity: 0;
+    transform: translate(200rem) scale(0.1);
+    width: 0;
+  }
+
+  100% {
+    opacity: 1;
+    width: 100%;
+    transform: translate(0) scale(1);
+  }
+}
+
+@keyframes menuFadeOut {
+  0% {
+    transform: translate(0) scale(1);
+    opacity: 1;
+    width: 100%;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(200rem) scale(0.1);
+    width: 0;
+  }
+}
+
+@keyframes menuBgEaseIn {
+  0% {
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(120);
+    background-color: #20305a;
+    opacity: 1;
+  }
+}
+
+@keyframes menuBgEaseOut {
+  0% {
+    background-color: #20305a;
+    transform: scale(120);
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(0);
+  }
+}

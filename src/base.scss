@@ -1,0 +1,141 @@
+/* ------------------------- Mixins --------------------- */
+// Break points
+// 1: 0 - 320      --- Start
+// 2: 320 - 480    --- phone
+// 3: 480 - 768    --- tab-port
+// 4: 768 - 960    --- tab-land
+// 5: 960 - 1200   --- netbook
+// 6: 1200 - 1600  --- desktop
+// 7: 1600 ++      --- wide-screen
+
+@mixin respond($breakpoint) {
+  @if $breakpoint==phone {
+    @media (min-width: 20em) {
+      @content;
+    }
+
+    // 320px/16px   = 20em
+  }
+
+  @if $breakpoint==phone-big {
+    @media (min-width: 25em) {
+      @content;
+    }
+
+    // 320px/16px   = 20em
+  }
+
+  @if $breakpoint==tab-port {
+    @media (min-width: 30em) {
+      @content;
+    }
+
+    // 480p x/16px   = 30em
+  }
+
+  @if $breakpoint==tab-land {
+    @media (min-width: 48em) {
+      @content;
+    }
+
+    // 768px/16px   = 48em
+  }
+
+  @if $breakpoint==netbook {
+    @media (min-width: 60em) {
+      @content;
+    }
+
+    // 960/16px    = 60em
+  }
+
+  @if $breakpoint==desktop {
+    @media (min-width: 75em) {
+      @content;
+    }
+
+    // 1200px/16px  = 75em
+  }
+
+  @if $breakpoint==wide-screen {
+    @media (min-width: 100em) {
+      @content;
+    }
+
+    // 1600px/16px  = 100em
+  }
+}
+
+/* ---------------- GENERAL SETTINGS  ------------------- */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+
+  @include respond(phone) {
+    font-size: 102.5%; // 1rem = 11px  // 11px/16px  = 68.75%
+  }
+
+  @include respond(phone-big) {
+    font-size: 105%; // 1rem = 11px  // 11px/16px  = 68.75%
+  }
+
+  @include respond(tab-port) {
+    font-size: 107.5%; // 1rem = 12px  // 12px/16px  = 75.00%
+  }
+
+  @include respond(tab-land) {
+    font-size: 110%; // 1rem = 13px  // 13px/16px  = 81.25%
+  }
+
+  @include respond(netbook) {
+    font-size: 112.5%; // 1rem = 14px  // 14px/16px  = 87.75%
+  }
+
+  @include respond(desktop) {
+    font-size: 115%; // 1rem = 15px  // 15px/16px  = 93.75%
+  }
+
+  @include respond(wide-screen) {
+    font-size: 125%; // 1rem = 16px  // 16px/16px  = 100%
+  }
+
+  font-size: 100%; // 1rem = 10px // 10px/16px = 62.5%
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+  height: 100vh;
+  line-height: 1.6rem;
+  width: 100%;
+  text-align: center;
+}
+
+// Colors
+$off-white: #f1f1f1;
+$grey: #555;
+$grey-dark: #1d1d1d;
+$grey-dark2: #1c1e27;
+$grey-light: #e6e6e6;
+$pink: #d9015b;
+$blue: #316fbb;
