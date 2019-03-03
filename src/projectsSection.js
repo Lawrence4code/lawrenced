@@ -1,5 +1,5 @@
 console.log('ps.js');
-import './projectSectionStyles.scss';
+import './projectsSectionStyles.scss';
 
 module.exports = {
   render: () => {

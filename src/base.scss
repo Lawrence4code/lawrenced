@@ -80,6 +80,7 @@
 
 html {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 
   @include respond(phone) {
     font-size: 102.5%; // 1rem = 11px  // 11px/16px  = 68.75%

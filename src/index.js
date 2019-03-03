@@ -1,10 +1,10 @@
 import './styles.scss';
-// import './projectSection';
 
 // ------------------------ Main menu toggle and visiblity ------------------------ //
 const wrapperMenu = document.querySelector('.wrapper-menu');
 
 wrapperMenu.addEventListener('click', function() {
+  console.log('triggered');
   wrapperMenu.classList.toggle('open');
   document
     .querySelector('.menu__background')
@@ -19,6 +19,23 @@ wrapperMenu.addEventListener('click', function() {
     document.querySelector('.menu__content').classList.add('menuFadeOut');
     document.querySelector('.menu__background').classList.add('menuBgEaseOut');
   }
+});
+
+document.querySelector('.hero__button').addEventListener('click', () => {
+  document.getElementById('projects').scrollIntoView(true);
+});
+
+document.querySelector('.home__link').addEventListener('click', () => {
+  document.getElementById('hero__section').scrollIntoView(true);
+  wrapperMenu.click();
+});
+document.querySelector('.foundation__link').addEventListener('click', () => {
+  document.getElementById('foundation').scrollIntoView(true);
+  wrapperMenu.click();
+});
+document.querySelector('.projects__link').addEventListener('click', () => {
+  document.getElementById('projects').scrollIntoView(true);
+  wrapperMenu.click();
 });
 
 // ------------------------ Foundation modals visibilites ------------------------ //
@@ -154,6 +171,7 @@ function doSomething(scrollPosition) {
       .classList.add('slideInUp');
   }
 
+  // foundation loading effects
   if (scrollPosition > 480) {
     document
       .getElementsByClassName('foundation__block--textAndButton')[0]
@@ -169,14 +187,9 @@ function doSomething(scrollPosition) {
       .classList.add('fadeAndPopIn');
   }
 
-  // if (scrollPosition > 500) {
-  //   import('./projectSection').then(projectSection => {
-  //      ();
-  //   });
-  // }
-
+  // lazy load script file
   if (scrollPosition > 500) {
-    import('./ps').then(ps => {
+    import('./projectsSection').then(ps => {
       ps.render();
     });
   }
@@ -208,60 +221,3 @@ window.addEventListener('scroll', () => {
     ticking = true;
   }
 });
-
-// Smooth scroll effect function //
-
-const getElementY = query => {
-  return (
-    window.pageYOffset +
-    document.querySelector(query).getBoundingClientRect().top
-  );
-};
-
-const doScrolling = (element, duration) => {
-  document.querySelector('.menu__content').classList.add('menuFadeOut');
-  document.querySelector('.menu__background').classList.add('menuBgEaseOut');
-  wrapperMenu.classList.toggle('open');
-  const startingY = window.pageYOffset;
-  const elementY = getElementY(element);
-
-  const targetY =
-    document.body.scrollHeight - elementY < window.innerHeight
-      ? document.body.scrollHeight - window.innerHeight
-      : elementY;
-
-  const diff = targetY - startingY;
-
-  const easing = t => {
-    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-  };
-
-  let start;
-
-  if (!diff) return;
-  window.requestAnimationFrame(function step(timestamp) {
-    if (!start) start = timestamp;
-    var time = timestamp - start;
-    var percent = Math.min(time / duration, 1);
-    percent = easing(percent);
-    window.scrollTo(0, startingY + diff * percent);
-    if (time < duration) {
-      window.requestAnimationFrame(step);
-    }
-  });
-};
-
-document
-  .querySelector('.hero__button')
-  .addEventListener('click', doScrolling.bind(null, '#projects', 1500));
-
-document
-  .querySelector('.home__link')
-  .addEventListener('click', doScrolling.bind(null, '#hero__section', 1500));
-
-document
-  .querySelector('.foundation__link')
-  .addEventListener('click', doScrolling.bind(null, '#foundation', 1500));
-document
-  .querySelector('.projects__link')
-  .addEventListener('click', doScrolling.bind(null, '#projects', 1500));
