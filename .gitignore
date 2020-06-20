@@ -35,6 +35,7 @@ bower_components/
 *.css.map
 build/
 dist/
+prod/
 maps/
 .vscode/
 public/dist/

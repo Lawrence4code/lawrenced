@@ -1,4 +1,3 @@
-console.log('ps.js');
 import './projectsSectionStyles.scss';
 
 module.exports = {

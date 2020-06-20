@@ -1,7 +1,7 @@
 /* ------------------------------------ Projects Section ------------------------------------*/
 
 .projects {
-  background-color: #f1f1f1;
+  background-color: var(--color-contrast-lower);
   position: relative;
   width: 100%;
   padding-bottom: 2.5rem;
@@ -278,7 +278,7 @@
 .projectFour__modal--content,
 .projectFive__modal--content,
 .projectSix__modal--content {
-  background: white;
+  background: var(--color-bg);
   left: 50%;
   position: absolute;
   top: 50%;
