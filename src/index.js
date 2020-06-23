@@ -3,8 +3,7 @@ import './styles.scss';
 // ------------------------ Main menu toggle and visiblity ------------------------ //
 const wrapperMenu = document.querySelector('.wrapper-menu');
 
-wrapperMenu.addEventListener('click', function() {
-  console.log('triggered');
+wrapperMenu.addEventListener('click', function () {
   wrapperMenu.classList.toggle('open');
   document
     .querySelector('.menu__background')
@@ -98,25 +97,25 @@ document
     ).style.display = 'none';
   });
 
-window.onclick = function(event) {
+window.onclick = function (event) {
   if (
     event.target ===
-      document.querySelector('.foundation__codeModal--container') ||
+    document.querySelector('.foundation__codeModal--container') ||
     event.target ===
-      document.querySelector('.foundation__optimizationModal--container') ||
+    document.querySelector('.foundation__optimizationModal--container') ||
     event.target ===
-      document.querySelector('.foundation__designModal--container') ||
+    document.querySelector('.foundation__designModal--container') ||
     event.target ===
-      document.querySelector('.foundation__experienceModal--container') ||
+    document.querySelector('.foundation__experienceModal--container') ||
     event.target === document.querySelector('.projectOne__modal--container') ||
     event.target === document.querySelector('.projectTwo__modal--container') ||
     event.target ===
-      document.querySelector('.projectThree__modal--container') ||
+    document.querySelector('.projectThree__modal--container') ||
     event.target === document.querySelector('.projectFour__modal--container') ||
     event.target === document.querySelector('.projectFive__modal--container') ||
     event.target === document.querySelector('.projectSix__modal--container') ||
     event.target ===
-      document.querySelector('.projects__extraProjects--container') ||
+    document.querySelector('.projects__extraProjects--container') ||
     event.target === document.querySelector('.siteDetails__modal--container')
   ) {
     document.querySelector('.foundation__codeModal--container').style.display =
@@ -220,4 +219,20 @@ window.addEventListener('scroll', () => {
     });
     ticking = true;
   }
+});
+
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+let state = isDarkMode || false;
+
+function activateMode() {
+  state ? document.body.setAttribute('data-theme', 'dark') : document.body.removeAttribute('data-theme');
+  state ? document.getElementById('themeSwitch').innerHTML = "Dark Mode" : document.getElementById('themeSwitch').innerHTML = "Light Mode";
+  state ? document.getElementById('themeSwitch').style.color = "#1a4882" : document.getElementById('themeSwitch').style.color = "#adadad";
+}
+
+activateMode()
+
+document.getElementById('themeSwitch').addEventListener('click', function (event) {
+  state ? state = false : state = true;
+  activateMode()
 });

@@ -1,3 +1,4 @@
+@import './colors';
 @import './base';
 
 // Hero Animation // credits: @screenshake // linkedin.com/in/saranshsinha
@@ -37,6 +38,8 @@ $shadows-big: multiple-box-shadow(100);
   left: 0;
   background-image: linear-gradient(rgba(0, 0, 0, 0.87), rgba(0, 0, 0, 0.87)),
     url(./images/bg.webp);
+  // background-image: linear-gradient(rgba(122, 122, 122, 0.87), rgba(0, 0, 0, 0.87)),
+  // url(./images/bg.webp);
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
@@ -306,7 +309,7 @@ $shadows-big: multiple-box-shadow(100);
     }
 
     & span {
-      color: $pink;
+      color: var(--color-primary-darker);
     }
   }
 
@@ -394,6 +397,20 @@ $shadows-big: multiple-box-shadow(100);
     z-index: 900;
   }
 
+  &__themeSwitch {
+    position: absolute;
+    top: 1.5rem;
+    right: 5.5rem;
+    z-index: 100;
+    color: var(--color-bg);
+    font-size: 0.8rem;
+    cursor: pointer;
+    @include respond(desktop) {
+      right: 7rem;
+      font-size: 0.9rem;
+    }
+  }
+
   &__content {
     width: 0%;
     opacity: 0;
@@ -415,8 +432,7 @@ $shadows-big: multiple-box-shadow(100);
     text-transform: uppercase;
     color: white;
     font-size: 1rem;
-    transition: all .3s ease;
-
+    transition: all 0.3s ease;
 
     @include respond(tab-land) {
       padding: 0.6rem;
@@ -476,14 +492,13 @@ $shadows-big: multiple-box-shadow(100);
     @include respond(desktop) {
       margin: 0 3rem 4rem 3rem;
       padding-top: 3rem;
-  
     }
 
     &:after {
       border-bottom: 1px solid $pink;
       content: '';
       display: block;
-      margin: .1rem auto 0 auto;
+      margin: 0.1rem auto 0 auto;
       width: 40%;
 
       @include respond(tab-land) {
@@ -519,7 +534,7 @@ $shadows-big: multiple-box-shadow(100);
       margin-bottom: 1.5rem;
 
       @include respond(desktop) {
-        margin-bottom: .75rem;
+        margin-bottom: 0.75rem;
       }
     }
 
@@ -599,7 +614,7 @@ $shadows-big: multiple-box-shadow(100);
 
   &--content {
     animation: slideInUpSimple 0.5s ease-in-out forwards;
-    background-color: white;
+    background-color: var(--color-bg);
     border-radius: 2px;
     height: 80%;
     left: 50%;
@@ -685,7 +700,7 @@ $shadows-big: multiple-box-shadow(100);
 
 /* ---------------- PROCESSBAR ---------------*/
 .process {
-  background: white;
+  background: var(--color-bg);
   display: none;
   height: 12.5rem;
   margin: 5rem auto 0 auto;
@@ -732,10 +747,10 @@ $shadows-big: multiple-box-shadow(100);
 }
 
 .process__bar li:before {
-  background-color: white;
-  border: 3px solid $blue;
+  background-color: var(--color-bg);
+  border: 3px solid var(--color-primary-light);
   border-radius: 50%;
-  color: $grey;
+  color: var(--color-primary-light);
   content: counter(step);
   counter-increment: step;
   display: block;
@@ -750,7 +765,7 @@ $shadows-big: multiple-box-shadow(100);
 }
 
 .process__bar li:after {
-  background-color: $blue;
+  background-color: var(--color-primary-light);
   content: '';
   height: 2px;
   left: -60%;
