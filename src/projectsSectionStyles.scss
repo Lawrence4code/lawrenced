@@ -152,23 +152,23 @@
 }
 
 .react-project-two .project__content {
-  background-image: url(./images/webapp2.png);
+  background-image: url(./images/hrsoft.jpg);
 }
 
 .node-project-one .project__content {
-  background-image: url(./images/hustleupfront.png);
+  background-image: url(./images/cafedel.jpg);
 }
 
 .node-project-two .project__content {
-  background-image: url(./images/webapp4.png);
+  background-image: url(./images/pingpong.jpg);
 }
 
 .redux-project-one .project__content {
-  background-image: url(./images/webapp5.png);
+  background-image: url(./images/hustleupfront.png);
 }
 
 .redux-project-two .project__content {
-  background-image: url(./images/webapp6.png);
+  background-image: url(./images/cloveuiciolors.jpg);
 }
 
 .project__content {
@@ -229,6 +229,7 @@
 @media (min-width: 48em) {
   .project__content--extraInfo h2 {
     font-size: 1rem;
+    width: 100%;
   }
 }
 
@@ -381,31 +382,31 @@
 /* project modal two */
 
 .projectTwo__modal--image {
-  background-image: url(./images/webappport2.jpg);
+  background-image: url(./images/hrsoft.jpg);
 }
 
 /* project modal Three */
 
 .projectThree__modal--image {
-  background-image: url(./images/hustleupapp.png);
+  background-image: url(./images/cafedel.jpg);
 }
 
 /* project modal four */
 
 .projectFour__modal--image {
-  background-image: url(./images/webappport4.jpg);
+  background-image: url(./images/pingpong.jpg);
 }
 
 /* project modal five */
 
 .projectFive__modal--image {
-  background-image: url(./images/webappport5.jpg);
+  background-image: url(./images/hustleupapp.png);
 }
 
 /* project modal six */
 
 .projectSix__modal--image {
-  background-image: url(./images/webappport6.jpg);
+  background-image: url(./images/cloveuiciolors.jpg);
 }
 
 .modal__details {

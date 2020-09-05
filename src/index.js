@@ -1,6 +1,6 @@
 import './styles.scss';
 
-// ------------------------ Main menu toggle and visiblity ------------------------ //
+// ------------------------ Main menu toggle and visibility ------------------------ //
 const wrapperMenu = document.querySelector('.wrapper-menu');
 
 wrapperMenu.addEventListener('click', function () {
@@ -100,22 +100,22 @@ document
 window.onclick = function (event) {
   if (
     event.target ===
-    document.querySelector('.foundation__codeModal--container') ||
+      document.querySelector('.foundation__codeModal--container') ||
     event.target ===
-    document.querySelector('.foundation__optimizationModal--container') ||
+      document.querySelector('.foundation__optimizationModal--container') ||
     event.target ===
-    document.querySelector('.foundation__designModal--container') ||
+      document.querySelector('.foundation__designModal--container') ||
     event.target ===
-    document.querySelector('.foundation__experienceModal--container') ||
+      document.querySelector('.foundation__experienceModal--container') ||
     event.target === document.querySelector('.projectOne__modal--container') ||
     event.target === document.querySelector('.projectTwo__modal--container') ||
     event.target ===
-    document.querySelector('.projectThree__modal--container') ||
+      document.querySelector('.projectThree__modal--container') ||
     event.target === document.querySelector('.projectFour__modal--container') ||
     event.target === document.querySelector('.projectFive__modal--container') ||
     event.target === document.querySelector('.projectSix__modal--container') ||
     event.target ===
-    document.querySelector('.projects__extraProjects--container') ||
+      document.querySelector('.projects__extraProjects--container') ||
     event.target === document.querySelector('.siteDetails__modal--container')
   ) {
     document.querySelector('.foundation__codeModal--container').style.display =
@@ -188,7 +188,7 @@ function doSomething(scrollPosition) {
 
   // lazy load script file
   if (scrollPosition > 500) {
-    import('./projectsSection').then(ps => {
+    import('./projectsSection').then((ps) => {
       ps.render();
     });
   }
@@ -221,18 +221,26 @@ window.addEventListener('scroll', () => {
   }
 });
 
-const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 let state = isDarkMode || false;
 
 function activateMode() {
-  state ? document.body.setAttribute('data-theme', 'dark') : document.body.removeAttribute('data-theme');
-  state ? document.getElementById('themeSwitch').innerHTML = "Dark Mode" : document.getElementById('themeSwitch').innerHTML = "Light Mode";
-  state ? document.getElementById('themeSwitch').style.color = "#1a4882" : document.getElementById('themeSwitch').style.color = "#adadad";
+  state
+    ? document.body.setAttribute('data-theme', 'dark')
+    : document.body.removeAttribute('data-theme');
+  state
+    ? (document.getElementById('themeSwitch').innerHTML = 'Light Mode')
+    : (document.getElementById('themeSwitch').innerHTML = 'Dark Mode');
+  state
+    ? (document.getElementById('themeSwitch').style.color = '#1a4882')
+    : (document.getElementById('themeSwitch').style.color = '#adadad');
 }
 
-activateMode()
+activateMode();
 
-document.getElementById('themeSwitch').addEventListener('click', function (event) {
-  state ? state = false : state = true;
-  activateMode()
-});
+document
+  .getElementById('themeSwitch')
+  .addEventListener('click', function (event) {
+    state ? (state = false) : (state = true);
+    activateMode();
+  });
