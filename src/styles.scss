@@ -143,18 +143,19 @@ $shadows-big: multiple-box-shadow(100);
   }
 
   &__logo {
+    position: fixed;
+    top: 20px;
+    left: 0px;
     display: inline-block;
     fill: white;
     stroke-width: 0;
     stroke: white;
     cursor: pointer;
+    z-index: 9999;
 
-    & h2 {
-      font-weight: 400;
-      &:hover {
-        color: $pink;
-        transition: all 0.3s ease-in;
-      }
+    & img {
+      width: '43px';
+      height: '40px';
     }
   }
 }
@@ -405,6 +406,8 @@ $shadows-big: multiple-box-shadow(100);
     color: var(--color-bg);
     font-size: 0.8rem;
     cursor: pointer;
+    width: 25px;
+    height: 25px;
     @include respond(desktop) {
       right: 7rem;
       font-size: 0.9rem;

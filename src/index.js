@@ -229,8 +229,10 @@ function activateMode() {
     ? document.body.setAttribute('data-theme', 'dark')
     : document.body.removeAttribute('data-theme');
   state
-    ? (document.getElementById('themeSwitch').innerHTML = 'Light Mode')
-    : (document.getElementById('themeSwitch').innerHTML = 'Dark Mode');
+    ? (document.getElementById('themeSwitch').src =
+        'https://img.icons8.com/office/30/000000/sun.png')
+    : (document.getElementById('themeSwitch').src =
+        'https://img.icons8.com/emoji/48/000000/crescent-moon-emoji.png');
   state
     ? (document.getElementById('themeSwitch').style.color = '#1a4882')
     : (document.getElementById('themeSwitch').style.color = '#adadad');
